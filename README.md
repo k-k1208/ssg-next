@@ -1,34 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#　SSGによるブログ実装
+jsonplaceholderから外部データをfetchAPIを用いて所得しpre-renderingする
+　　
+## pages/index.tsx：ブログの一覧ページ
+ビルド時にgetStaticProps関数が実行されブログ一覧に必要な情報を所得しpropsとして、ページコンポーネントとして渡されレンダリングされる。(pre-rendering)　　
+　　
+1. getStaticProps関数：propsをページコンポーネントに渡す
+2. ページコンポーネント(Home)
+　　
+## pages/posts/[id].tsx：ブログの詳細ページ
+ビルド時にgetStaticPaths関数が実行され、事前ビルドするパス対象を指定しgetStaticProps関数に渡す。そのパスを元にgetStaticProps関数でブログ詳細に必要な情報を所得しpropsとして、ページコンポーネントとして渡されレンダリングされる。(pre-rendering)　　
+　　
+1. getStaticPaths関数：pathsをgetStaticProps関数に渡す
+2. getStaticProps関数：propsをページコンポーネントに渡す
+3. ページコンポーネント([id].tsx)
+　　　　
+　　　
+　　　
+# 思考の流れ　　
+- 外部データ所得
+    - featch APIを使用
+- データを用いてレンダリング
+    - レンダリングにSSR,SSG,CSR,ISRのどの仕組みを用いる？→今回はSSG
+- getStaticProps関数が必要
+    - ブログ一覧ページ：SSG
+        - getStaticProps関数
+    - ブログ詳細ページ：ダイナミックルーティングを用いたSSG
+        - getStaticProps関数+getStaticPaths関数
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
