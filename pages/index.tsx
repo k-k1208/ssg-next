@@ -17,7 +17,7 @@ const Home: NextPage<Props> = ({posts}) => {
       </h1>
       <ul>
         {posts? posts.map(post => (
-            <li>
+            <li key={post.id}>
               {post.id}{':'}
               <Link href={`/posts/${post.id}`}>
                 <span className='hover:underline'>{post.title}</span>
