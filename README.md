@@ -1,4 +1,4 @@
-#　SSGによるブログ実装
+# SSGによるブログ実装
 jsonplaceholderから外部データをfetchAPIを用いて所得しpre-renderingする
 　　
 ## pages/index.tsx：ブログの一覧ページ
